@@ -230,74 +230,76 @@ export default function Contact() {
         </div>
       </section>
 
-      // {isOpenChat && (
-      //   <div className="fixed bottom-6 right-6 z-[70] w-[340px] md:w-[400px] bg-background border border-text-secondary/20 rounded-3xl shadow-2xl flex flex-col overflow-hidden" style={{ height: "520px" }}>
-      //     <div className="flex items-center justify-between px-5 py-4 border-b border-text-secondary/10 bg-thirdary/20">
-      //       <div className="flex items-center gap-3">
-      //         <div className="w-8 h-8 rounded-full bg-thirdary/60 flex items-center justify-center text-sm font-bold text-text-primary">AI</div>
-      //         <div>
-      //           <p className="text-text-primary font-bold text-sm">Roid&apos;s AI Assistant</p>
-      //           <p className="text-text-secondary text-xs">Ask me anything</p>
-      //         </div>
-      //       </div>
-      //       <div className="flex items-center gap-2">
-      //         {chatMessages.length > 0 && (
-      //           <button onClick={() => { setChatMessages([]); localStorage.removeItem("p4ll_chat_messages") }} className="text-text-secondary hover:text-text-primary text-xs transition-colors">Clear</button>
-      //         )}
-      //         <button onClick={() => setIsOpenChat(false)} className="text-text-secondary hover:text-text-primary transition-colors text-lg">✕</button>
-      //       </div>
-      //     </div>
+      {/*
+      {isOpenChat && (
+        <div className="fixed bottom-6 right-6 z-[70] w-[340px] md:w-[400px] bg-background border border-text-secondary/20 rounded-3xl shadow-2xl flex flex-col overflow-hidden" style={{ height: "520px" }}>
+          <div className="flex items-center justify-between px-5 py-4 border-b border-text-secondary/10 bg-thirdary/20">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-thirdary/60 flex items-center justify-center text-sm font-bold text-text-primary">AI</div>
+              <div>
+                <p className="text-text-primary font-bold text-sm">Roid&apos;s AI Assistant</p>
+                <p className="text-text-secondary text-xs">Ask me anything</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              {chatMessages.length > 0 && (
+                <button onClick={() => { setChatMessages([]); localStorage.removeItem("p4ll_chat_messages") }} className="text-text-secondary hover:text-text-primary text-xs transition-colors">Clear</button>
+              )}
+              <button onClick={() => setIsOpenChat(false)} className="text-text-secondary hover:text-text-primary transition-colors text-lg">✕</button>
+            </div>
+          </div>
 
-      //     <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3">
-      //       {chatMessages.length === 0 && (
-      //         <div className="text-center text-text-secondary text-sm mt-8">
-      //           <p className="text-2xl mb-2">👋</p>
-      //           <p>Hi! I&apos;m Roid&apos;s AI assistant.</p>
-      //           <p className="text-xs mt-1">Ask me about his skills, experience, or projects!</p>
-      //         </div>
-      //       )}
-      //       {chatMessages.map((msg) => (
-      //         <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-      //           <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${msg.sender === "user" ? "bg-button-hero text-background rounded-br-sm" : "bg-thirdary/40 border border-text-secondary/10 text-text-primary rounded-bl-sm"}`}>
-      //             {msg.sender === "bot" ? (
-      //               <div className="prose prose-sm prose-invert max-w-none"><ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.text}</ReactMarkdown></div>
-      //             ) : msg.text}
-      //           </div>
-      //         </div>
-      //       ))}
-      //       {isChatLoading && (
-      //         <div className="flex justify-start">
-      //           <div className="bg-thirdary/40 border border-text-secondary/10 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5">
-      //             {[0, 1, 2].map((i) => (
-      //               <div key={i} className="w-1.5 h-1.5 rounded-full bg-text-secondary animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
-      //             ))}
-      //           </div>
-      //         </div>
-      //       )}
-      //       <div ref={chatEndRef} />
-      //     </div>
+          <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3">
+            {chatMessages.length === 0 && (
+              <div className="text-center text-text-secondary text-sm mt-8">
+                <p className="text-2xl mb-2">👋</p>
+                <p>Hi! I&apos;m Roid&apos;s AI assistant.</p>
+                <p className="text-xs mt-1">Ask me about his skills, experience, or projects!</p>
+              </div>
+            )}
+            {chatMessages.map((msg) => (
+              <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
+                <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${msg.sender === "user" ? "bg-button-hero text-background rounded-br-sm" : "bg-thirdary/40 border border-text-secondary/10 text-text-primary rounded-bl-sm"}`}>
+                  {msg.sender === "bot" ? (
+                    <div className="prose prose-sm prose-invert max-w-none"><ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.text}</ReactMarkdown></div>
+                  ) : msg.text}
+                </div>
+              </div>
+            ))}
+            {isChatLoading && (
+              <div className="flex justify-start">
+                <div className="bg-thirdary/40 border border-text-secondary/10 rounded-2xl rounded-bl-sm px-4 py-3 flex gap-1.5">
+                  {[0, 1, 2].map((i) => (
+                    <div key={i} className="w-1.5 h-1.5 rounded-full bg-text-secondary animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
+                  ))}
+                </div>
+              </div>
+            )}
+            <div ref={chatEndRef} />
+          </div>
 
-      //     <div className="px-4 py-3 border-t border-text-secondary/10">
-      //       <div className="flex gap-2">
-      //         <input
-      //           type="text"
-      //           value={chatInput}
-      //           onChange={(e) => setChatInput(e.target.value)}
-      //           onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendChat() } }}
-      //           placeholder="Type a message..."
-      //           className="flex-1 px-4 py-2.5 bg-thirdary/30 border border-text-secondary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:border-text-secondary/40 text-sm transition-all"
-      //         />
-      //         <button
-      //           onClick={sendChat}
-      //           disabled={isChatLoading || !chatInput.trim()}
-      //           className="px-4 py-2.5 bg-button-hero text-background font-bold rounded-xl hover:bg-button-hero-hover disabled:opacity-40 disabled:cursor-not-allowed transition-all text-sm"
-      //         >
-      //           →
-      //         </button>
-      //       </div>
-      //     </div>
-      //   </div>
-      // )}
+          <div className="px-4 py-3 border-t border-text-secondary/10">
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendChat() } }}
+                placeholder="Type a message..."
+                className="flex-1 px-4 py-2.5 bg-thirdary/30 border border-text-secondary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:border-text-secondary/40 text-sm transition-all"
+              />
+              <button
+                onClick={sendChat}
+                disabled={isChatLoading || !chatInput.trim()}
+                className="px-4 py-2.5 bg-button-hero text-background font-bold rounded-xl hover:bg-button-hero-hover disabled:opacity-40 disabled:cursor-not-allowed transition-all text-sm"
+              >
+                →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      */}
     </>
   )
 }
