@@ -12,11 +12,23 @@ interface ExperienceItem {
   date: string
   description: string
   skills: string[]
+  github?: string
+  link?: string
 }
 
 const experiences: ExperienceItem[] = [
   {
     id: 1,
+    company: "ResQMeal",
+    role: "Developer",
+    type: "Open Source Project",
+    date: "2025",
+    description: "Built a web-based surplus food redistribution platform connecting food donors with verified recipient organizations. Implemented intelligent matching algorithms, real-time notifications, and admin verification layer.",
+    skills: ["Web Development", "Smart Matching", "Food Tech", "Social Impact"],
+    github: "https://github.com/roidpalih-coder/ResQMeal",
+  },
+  {
+    id: 2,
     company: "Graduation Website SMKTH",
     role: "Frontend Developer",
     type: "Development Team Member",
@@ -25,20 +37,20 @@ const experiences: ExperienceItem[] = [
     skills: ["Vue.js", "UI/UX Design", "Responsive Design"],
   },
   {
-    id: 2,
+    id: 3,
     company: "e-Solat THP",
     role: "Web Developer",
     type: "Team Lead Developer",
-    date: "2024 – 2025",
+    date: "2024 - 2025",
     description: "Led development team in planning, development, and testing of the website. Coordinated team members for task distribution and optimized performance, responsiveness, and compatibility across devices.",
     skills: ["Team Leadership", "Web Development", "Performance Optimization"],
   },
   {
-    id: 3,
+    id: 4,
     company: "EduRide",
     role: "Game Developer",
     type: "Team Leader",
-    date: "2024 – 2025",
+    date: "2024 - 2025",
     description: "Led team in planning, developing, and testing the Unity-based EduRide educational game. Designed gameplay concepts, game mechanics, and educational yet interactive game flow.",
     skills: ["Unity", "Game Design", "Team Leadership", "C#"],
   },
@@ -88,12 +100,25 @@ export default function Experience() {
 
                     <p className="text-text-secondary text-sm md:text-base leading-relaxed mb-4">{exp.description}</p>
 
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       {exp.skills.map((skill) => (
                         <span key={skill} className="text-xs font-semibold px-3 py-1 rounded-full bg-background border border-text-secondary/15 text-text-secondary">
                           {skill}
                         </span>
                       ))}
+                      {exp.github && (
+                        <a
+                          href={exp.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="ml-auto flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border border-text-secondary/30 text-text-secondary hover:text-text-primary hover:border-text-primary/50 hover:bg-background transition-all duration-200"
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                          </svg>
+                          View on GitHub
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
