@@ -1,5 +1,4 @@
 "use client"
-import Image from "next/image"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import FadeDown from "@/components/animations/FadeDown"
@@ -9,10 +8,22 @@ import GlareHover from "@/components/GlareHover"
 const projectList = [
   {
     index: 0,
+    title: "ResQMeal",
+    description: "Web-based surplus food redistribution platform that connects food donors with verified recipient organizations using intelligent matching.",
+    longDescription: "ResQMeal is a web-based platform designed to tackle food waste by intelligently connecting food donors with verified recipient organizations. The system features smart matching algorithms, donor and recipient dashboards, real-time notifications, and an admin verification layer to ensure food safety and accountability.",
+    emoji: "🍱",
+    tags: ["Web Development", "Food Tech", "Smart Matching", "Social Impact"],
+    role: "Developer",
+    year: "2025",
+    link: null,
+    github: "https://github.com/roidpalih-coder/ResQMeal",
+  },
+  {
+    index: 1,
     title: "Graduation Website SMKTH",
     description: "A responsive and user-friendly graduation website for SMK Tunas Harapan Pati. Implemented UI/UX design using Vue.js framework with cross-browser compatibility.",
     longDescription: "This project was a collaborative effort as part of the graduation committee development team. My role was as a Frontend Developer where I implemented the designed UI into a fully functional responsive website. The site features smooth animations, mobile-first design, and dynamic content sections for the graduation ceremony.",
-    imagePath: "/images/placeholder-project.svg",
+    emoji: "🌐",
     tags: ["Vue.js", "UI/UX", "Frontend", "Responsive"],
     role: "Frontend Developer",
     year: "2024",
@@ -20,26 +31,26 @@ const projectList = [
     github: null,
   },
   {
-    index: 1,
+    index: 2,
     title: "e-Solat THP",
     description: "A comprehensive prayer schedule and management website. Led the development team as Team Lead, ensuring performance, responsiveness, and compatibility.",
-    longDescription: "As Team Lead Developer for e-Solat THP, I coordinated a development team through the full project lifecycle — from planning and feature design to testing and deployment. The website provides prayer time schedules, mosque information, and interactive features for the community. I implemented performance optimization techniques and ensured the site works seamlessly across all devices and browsers.",
-    imagePath: "/images/placeholder-project.svg",
+    longDescription: "As Team Lead Developer for e-Solat THP, I coordinated a development team through the full project lifecycle - from planning and feature design to testing and deployment. The website provides prayer time schedules, mosque information, and interactive features for the community. I implemented performance optimization techniques and ensured the site works seamlessly across all devices and browsers.",
+    emoji: "📿",
     tags: ["Web Development", "Team Lead", "Project Management", "Performance"],
     role: "Team Lead Developer",
-    year: "2024 – 2025",
+    year: "2024 - 2025",
     link: null,
     github: null,
   },
   {
-    index: 2,
+    index: 3,
     title: "EduRide",
     description: "An educational game built with Unity. Led the team in designing gameplay concepts and mechanics, creating an interactive and educational experience.",
     longDescription: "EduRide is a Unity-based educational game where I served as Team Leader and Game Developer. I led the team through conceptualization, development, and testing phases. The game focuses on creating an engaging learning experience through interactive gameplay mechanics. I designed the core game loop, educational content integration, and ensured smooth game performance.",
-    imagePath: "/images/placeholder-project.svg",
+    emoji: "🎮",
     tags: ["Unity", "C#", "Game Design", "Team Leadership", "Education"],
     role: "Team Leader & Game Developer",
-    year: "2024 – 2025",
+    year: "2024 - 2025",
     link: null,
     github: null,
   },
@@ -68,7 +79,7 @@ export default function Project() {
           </div>
         </FadeDown>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 px-6 md:px-12">
           {projectList.map((project, index) => (
             <FadeUp key={index} delay={index * 0.1}>
               <GlareHover className="group flex flex-col h-full bg-background border border-text-secondary/20 hover:border-text-primary/50 rounded-2xl overflow-hidden transition-all duration-500 shadow-sm hover:shadow-2xl hover:-translate-y-1 cursor-pointer">
@@ -77,9 +88,7 @@ export default function Project() {
                   onClick={() => setIsOpen(project.index)}
                 >
                   <div className="text-center p-8">
-                    <div className="text-4xl mb-3">
-                      {index === 0 ? "🌐" : index === 1 ? "📿" : "🎮"}
-                    </div>
+                    <div className="text-5xl mb-3">{project.emoji}</div>
                     <p className="text-text-secondary text-xs font-medium">{project.role}</p>
                   </div>
                 </div>
@@ -130,9 +139,7 @@ export default function Project() {
             >
               <div className="relative aspect-[16/9] bg-thirdary/40 rounded-t-3xl flex items-center justify-center border-b border-text-secondary/10">
                 <div className="text-center">
-                  <div className="text-6xl mb-3">
-                    {activeProject.index === 0 ? "🌐" : activeProject.index === 1 ? "📿" : "🎮"}
-                  </div>
+                  <div className="text-6xl mb-3">{activeProject.emoji}</div>
                   <span className="text-xs font-medium px-3 py-1 rounded-full bg-background/80 border border-text-secondary/20 text-text-secondary">
                     {activeProject.role}
                   </span>
@@ -163,7 +170,12 @@ export default function Project() {
 
                 <div className="flex gap-3">
                   {activeProject.link ? (
-                    <a href={activeProject.link} target="_blank" rel="noopener noreferrer" className="flex-1 py-3 text-center text-sm font-semibold bg-button-hero text-background rounded-xl hover:bg-button-hero-hover transition-all duration-300">
+                    <a
+                      href={activeProject.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-3 text-center text-sm font-semibold bg-button-hero text-background rounded-xl hover:bg-button-hero-hover transition-all duration-300"
+                    >
                       Live Demo
                     </a>
                   ) : (
@@ -172,8 +184,16 @@ export default function Project() {
                     </div>
                   )}
                   {activeProject.github ? (
-                    <a href={activeProject.github} target="_blank" rel="noopener noreferrer" className="flex-1 py-3 text-center text-sm font-semibold border border-text-secondary/30 text-text-primary rounded-xl hover:border-text-primary/60 hover:bg-thirdary transition-all duration-300">
-                      GitHub
+                    <a
+                      href={activeProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-3 text-center text-sm font-semibold border border-text-secondary/30 text-text-primary rounded-xl hover:border-text-primary/60 hover:bg-thirdary transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                      </svg>
+                      View on GitHub
                     </a>
                   ) : (
                     <div className="flex-1 py-3 text-center text-sm font-semibold bg-thirdary/30 border border-text-secondary/15 text-text-secondary rounded-xl cursor-not-allowed">
