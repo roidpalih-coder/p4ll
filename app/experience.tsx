@@ -1,6 +1,6 @@
 "use client"
-import { useRef } from "react"
-import { motion, useScroll, useSpring } from "motion/react"
+import { useRef, useState, useEffect } from "react"
+import { motion, useScroll, useSpring, AnimatePresence } from "motion/react"
 import FadeDown from "@/components/animations/FadeDown"
 import FadeUp from "@/components/animations/FadeUp"
 
@@ -14,11 +14,22 @@ interface ExperienceItem {
   skills: string[]
   github?: string
   link?: string
+  certificate?: string
 }
 
 const experiences: ExperienceItem[] = [
   {
     id: 1,
+    company: "Samsung Innovation Campus Batch 7 (Stage 1)",
+    role: "Participant",
+    type: "Bootcamp & Certification",
+    date: "2024",
+    description: "Participated in Samsung Innovation Campus Batch 7 Stage 1, focusing on foundational programming, coding, and logical thinking. Completed the training and earned the official certificate of participation.",
+    skills: ["Programming", "Coding", "Logical Thinking", "Problem Solving"],
+    certificate: "/certificates/Samsung_Innovation_Campus_Batch7.pdf",
+  },
+  {
+    id: 2,
     company: "ResQMeal",
     role: "Developer",
     type: "Open Source Project",
@@ -61,8 +72,20 @@ export default function Experience() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
   const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
 
+  const [activeCert, setActiveCert] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (activeCert) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "unset"
+    }
+    return () => { document.body.style.overflow = "unset" }
+  }, [activeCert])
+
   return (
-    <section id="experience" className="w-full max-w-7xl mx-auto py-24 md:py-32 cursor-default bg-background border-t border-text-secondary/10">
+    <>
+      <section id="experience" className="w-full max-w-7xl mx-auto py-24 md:py-32 cursor-default bg-background border-t border-text-secondary/10">
       <FadeDown>
         <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 md:mb-24 w-full text-left">
           <h2 className="text-sm font-bold tracking-[0.2em] text-text-secondary uppercase mb-4">Journey</h2>
@@ -119,6 +142,17 @@ export default function Experience() {
                           View on GitHub
                         </a>
                       )}
+                      {exp.certificate && (
+                        <button
+                          onClick={() => setActiveCert(exp.certificate!)}
+                          className={`${!exp.github ? "ml-auto" : ""} flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border border-text-secondary/30 text-text-primary hover:border-text-primary/60 hover:bg-thirdary transition-all duration-200`}
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+                          </svg>
+                          View Certificate
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -128,5 +162,44 @@ export default function Experience() {
         </div>
       </div>
     </section>
+
+      <AnimatePresence>
+        {activeCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-background/80 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
+            onClick={() => setActiveCert(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", stiffness: 200, damping: 25 }}
+              className="bg-background border border-text-secondary/20 rounded-3xl max-w-4xl w-full h-[85vh] md:h-[90vh] flex flex-col overflow-hidden shadow-2xl relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between px-6 py-4 border-b border-text-secondary/10 bg-thirdary/20">
+                <h3 className="text-text-primary font-bold">Certificate Overview</h3>
+                <button
+                  onClick={() => setActiveCert(null)}
+                  className="w-8 h-8 flex items-center justify-center rounded-full bg-background border border-text-secondary/20 text-text-secondary hover:text-text-primary hover:bg-thirdary transition-all"
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="flex-1 w-full bg-thirdary/10 relative p-4">
+                <iframe
+                  src={`${activeCert}#toolbar=0&navpanes=0&scrollbar=0`}
+                  className="w-full h-full rounded-xl border border-text-secondary/20 bg-background"
+                  title="Certificate Document"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
