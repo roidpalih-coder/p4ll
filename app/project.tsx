@@ -28,7 +28,7 @@ const projectList = [
     role: "Frontend Developer",
     year: "2024",
     link: null,
-    github: null,
+    github: "https://github.com/roidpalih-coder/frontend-web-kelulusan",
   },
   {
     index: 2,
@@ -40,7 +40,7 @@ const projectList = [
     role: "Team Lead Developer",
     year: "2024 - 2025",
     link: null,
-    github: null,
+    github: "https://github.com/roidpalih-coder/e-Solat-THP",
   },
   {
     index: 3,
@@ -52,7 +52,7 @@ const projectList = [
     role: "Team Leader & Game Developer",
     year: "2024 - 2025",
     link: null,
-    github: null,
+    github: "https://github.com/roidpalih-coder/Find-and-Found",
   },
 ]
 
