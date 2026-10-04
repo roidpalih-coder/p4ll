@@ -30,6 +30,16 @@ const experiences: ExperienceItem[] = [
   },
   {
     id: 2,
+    company: "Pelatihan Konten Kreator",
+    role: "Content Creator",
+    type: "Training & Certification",
+    date: "2024",
+    description: "Attended a content creator training program focusing on digital content production, including photography, videography, video editing, and social media strategy. Earned an official certificate upon completion.",
+    skills: ["Content Creation", "Photography", "Video Editing", "Social Media", "Digital Marketing"],
+    certificate: "/certificates/Pelatihan_Konten_Kreator.pdf",
+  },
+  {
+    id: 2,
     company: "ResQMeal",
     role: "Developer",
     type: "Open Source Project",
