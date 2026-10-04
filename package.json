@@ -1,0 +1,38 @@
+{
+  "name": "p4ll",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "dev:node": "node node_modules/next/dist/bin/next dev",
+    "build:node": "node node_modules/next/dist/bin/next build",
+    "start:node": "node node_modules/next/dist/bin/next start"
+  },
+  "dependencies": {
+    "@openrouter/sdk": "^1.0.17",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.2.3",
+    "motion": "^12.23.24",
+    "next": "16.1.6",
+    "nodemailer": "^7.0.10",
+    "openai": "^6.49.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-intersection-observer": "^10.0.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/nodemailer": "^7.0.3",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
